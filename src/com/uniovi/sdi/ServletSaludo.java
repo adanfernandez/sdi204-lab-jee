@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ServletSaludo")
 public class ServletSaludo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	int contador = 0;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,7 +38,14 @@ public class ServletSaludo extends HttpServlet {
 		out.println("<BODY>");
 		String nombre = (String) request.getParameter("nombre");
 		if (nombre != null)
-			out.println("Hola " + nombre + "<br>");
+			out.println("Hola " + nombre + "<br>");		
+		try {
+			Thread.sleep(15000);
+		}catch(InterruptedException e){}
+		
+		out.println("ID del hilo:"+Thread.currentThread().getId()+"<br>");
+		contador++;
+		out.println("Visitas:"+contador+"<br>");
 		out.println("</BODY></HTML>");
 	}
 
